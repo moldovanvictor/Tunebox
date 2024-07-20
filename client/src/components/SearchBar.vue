@@ -4,7 +4,7 @@
         type="text"
         v-model="query"
         @input="onInput"
-        placeholder="Search for artists, albums, or songs..."
+        placeholder="Search for artists, albums, or songs"
     />
     <ul v-if="suggestions.length" class="suggestions">
       <li v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)">
@@ -13,7 +13,6 @@
     </ul>
   </div>
 </template>
-
 <script>
 export default {
   props: {
@@ -73,12 +72,26 @@ export default {
 <style scoped>
 .search-bar {
   position: relative;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  background-color: #FAFAFA;
+  color: #004D40;
+}
+
+input[type="text"]::placeholder {
+  color: #757575;
 }
 
 .suggestions {
   position: absolute;
   border: 1px solid #ccc;
-  background: white;
+  background: #FFFFFF;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -91,9 +104,11 @@ export default {
 .suggestions li {
   padding: 10px;
   cursor: pointer;
+  background-color: #FFFFFF;
+  color: #004D40;
 }
 
 .suggestions li:hover {
-  background-color: #f0f0f0;
+  background-color: #FFB74D;
 }
 </style>

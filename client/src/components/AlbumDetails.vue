@@ -1,5 +1,5 @@
 <template>
-  <div v-if="album">
+  <div v-if="album" class="album-details">
     <h1>{{ album.title }}</h1>
     <router-link :to="{ name: 'ArtistDetails', params: { id: artistId } }">Back to Albums</router-link>
     <form @submit.prevent="updateAlbum">
@@ -20,7 +20,7 @@
 
       <div v-if="album.songs.length > 0">
         <ul>
-          <li v-for="(song, index) in album.songs" :key="index">
+          <li v-for="(song, index) in album.songs" :key="index" class="song">
             {{ song.title }} ({{ song.length }})
             <form @submit.prevent="updateSong(index)">
               <input type="text" v-model="song.title" required />
@@ -138,12 +138,59 @@ export default {
 </script>
 
 <style scoped>
+.album-details {
+  background-color: #FAFAFA;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+h1, h2 {
+  color: #004D40;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+textarea {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  background-color: #FAFAFA;
+  color: #004D40;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: #757575;
+}
+
 button {
   margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #004D40;
+  color: #FAFAFA;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #FF6F61;
 }
 
 .error {
   color: red;
   font-size: 0.9em;
+}
+
+.song {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #FAFAFA;
 }
 </style>

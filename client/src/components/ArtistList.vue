@@ -51,7 +51,7 @@ export default {
     },
     createArtist() {
       const maxId = this.artists.reduce((max, artist) => (Number(artist.id) > max ? Number(artist.id) : max), -1);
-      const newArtist = { ...this.newArtist, id: (maxId + 1).toString(), albums: [] };
+      const newArtist = {...this.newArtist, id: (maxId + 1).toString(), albums: []};
 
       fetch('http://localhost:3001/artists', {
         method: 'POST',
@@ -94,9 +94,56 @@ export default {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  background-color: #FAFAFA;
+}
+
+h1 {
+  text-align: center;
+  color: #004D40;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  background-color: #FAFAFA;
+  color: #004D40;
+}
+
+input[type="text"]::placeholder {
+  color: #757575;
 }
 
 button {
   margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #004D40;
+  color: #FAFAFA;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #FF6F61;
+}
+
+p {
+  color: #004D40;
+  margin: 0;
+}
+
+.artist button {
+  background-color: #FFB74D;
+  color: #004D40;
+}
+
+.artist button:hover {
+  background-color: #FF6F61;
 }
 </style>

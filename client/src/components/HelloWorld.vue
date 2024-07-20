@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Music Data</h1>
     <SearchBar :artists="allArtists" @search="handleSearch" />
     <router-link to="/artists">
-      <button>View All Artists</button>
+      <button class="view-artists-button">View All Artists</button>
     </router-link>
     <div v-if="filteredArtists.length > 0">
       <div v-for="artist in filteredArtists" :key="artist.id" class="artist">
@@ -78,7 +78,7 @@ export default {
                     album.title.toLowerCase().includes(query.toLowerCase())
                 );
                 if (filteredAlbums.length > 0) {
-                  return { ...artist, albums: filteredAlbums };
+                  return {...artist, albums: filteredAlbums};
                 }
                 return null;
               })
@@ -92,13 +92,13 @@ export default {
                           song.title.toLowerCase().includes(query.toLowerCase())
                       );
                       if (filteredSongs.length > 0) {
-                        return { ...album, songs: filteredSongs };
+                        return {...album, songs: filteredSongs};
                       }
                       return null;
                     })
                     .filter(album => album !== null);
                 if (filteredAlbums.length > 0) {
-                  return { ...artist, albums: filteredAlbums };
+                  return {...artist, albums: filteredAlbums};
                 }
                 return null;
               })
@@ -117,31 +117,41 @@ export default {
 </script>
 
 <style scoped>
-.artist {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.album {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.container {
+  background-color: #FAFAFA;
+  color: #004D40;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: #004D40;
 }
 
 h2 {
-  color: #333;
+  color: #004D40;
 }
 
 h3 {
-  color: #555;
+  color: #FF6F61;
+}
+
+.artist {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+}
+
+.album {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  background-color: #FFFFFF;
 }
 
 ul {
@@ -155,9 +165,29 @@ li {
 
 p {
   font-style: italic;
+  color: #757575;
 }
 
 button {
   margin-top: 10px;
+  background-color: #FFB74D;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #FFA726;
+}
+
+.view-artists-button {
+  background-color: #FF6F61;
+  color: #FFFFFF;
+}
+
+.view-artists-button:hover {
+  background-color: #E64A45;
 }
 </style>

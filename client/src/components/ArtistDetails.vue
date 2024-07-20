@@ -1,5 +1,5 @@
 <template>
-  <div v-if="artist">
+  <div v-if="artist" class="artist-details">
     <h1>{{ artist.name }}</h1>
     <button @click="showEditForm = !showEditForm">{{ showEditForm ? 'Hide' : 'Edit Artist' }}</button>
     <form v-if="showEditForm" @submit.prevent="updateArtist">
@@ -7,9 +7,12 @@
       <button type="submit">Save</button>
     </form>
     <h2>Albums</h2>
-    <button @click="showCreateAlbumForm = !showCreateAlbumForm">{{ showCreateAlbumForm ? 'Hide' : 'Create New Album' }}</button>
+    <button @click="showCreateAlbumForm = !showCreateAlbumForm">{{
+        showCreateAlbumForm ? 'Hide' : 'Create New Album'
+      }}
+    </button>
     <form v-if="showCreateAlbumForm" @submit.prevent="createAlbum">
-      <input type="text" v-model="newAlbum.title" placeholder="Album Title" required />
+      <input type="text" v-model="newAlbum.title" placeholder="Album Title" required/>
       <button type="submit">Create</button>
     </form>
     <div v-if="artist.albums.length > 0">
@@ -118,15 +121,66 @@ export default {
 </script>
 
 <style scoped>
+.artist-details {
+  background-color: #FAFAFA;
+  padding: 20px;
+  border-radius: 5px;
+}
+
 .album {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #FAFAFA;
+}
+
+h1, h2 {
+  color: #004D40;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  background-color: #FAFAFA;
+  color: #004D40;
+}
+
+input[type="text"]::placeholder {
+  color: #757575;
 }
 
 button {
-  margin-top: 10px;
   margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #004D40;
+  color: #FAFAFA;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #FF6F61;
+}
+
+p {
+  color: #004D40;
+  margin: 0;
+}
+
+.artist-details button {
+  background-color: #FFB74D;
+  color: #004D40;
+}
+
+.artist-details button:hover {
+  background-color: #FF6F61;
 }
 </style>
